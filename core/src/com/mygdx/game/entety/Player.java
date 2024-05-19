@@ -12,7 +12,7 @@ public class Player extends Entety {
     private int score=0;
     public static Point2D position;
     float speed=12;
-    float side=128;
+    public static float side=128;
     float health;
     private Texture imgPlayer;
     private Circle bounds;
@@ -81,5 +81,15 @@ public class Player extends Entety {
 
     public float getHealth() {
         return health;
+    }
+
+    public void setHealf() {
+        health=10;
+    }
+    public void setRecord(){
+        score=0;
+    }
+    public void setStartPosition(){
+        position.setPoint(Main.Widith/2+side,Main.Height/2+side);
     }
 }

@@ -81,25 +81,6 @@ public class EnemyWithBow extends Entety{
         boundsEnemyBow.poso.setPoint(positionEnemyBow);
         bbEnemy.poso.setPoint(positionEnemyBow);
     }
-    public void attack(int Rang){
-        switch (Rang){
-            case 1:
-                float xs=positionEnemyBow.getX()-Player.position.getX();
-                float ys=positionEnemyBow.getY()-Player.position.getY();
-                float ds= (float) Math.sqrt(xs*xs+ys*ys);
-                directionEnemyBow.setPoint(-(xs / ds), -(ys / ds));
-                break;
-            case 2:
-                directionEnemyBow.setX((float) Math.sin(Math.toRadians(Math.random()*360)));
-                directionEnemyBow.setY((float) Math.cos(Math.toRadians(Math.random()*360)));
-                positionEnemyBow.add(directionEnemyBow.getX()*speedEnemyBow,directionEnemyBow.getY()*speedEnemyBow);
-                break;
-            case 3:
-                break;
-            default:
-                break;
-        }
-    }
     public void hit(){
         healthEnemyBow-=3;
     }

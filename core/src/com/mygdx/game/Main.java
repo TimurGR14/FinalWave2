@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
@@ -17,9 +18,11 @@ import com.mygdx.game.settings.JoostikPlayer;
 import com.mygdx.game.settings.Point2D;
 import com.mygdx.game.settings.Wave;
 
+import java.util.logging.FileHandler;
+
 public class Main extends Game {
 	public static SpriteBatch batch;
-	private Point2D posPlayer=new Point2D(300,200);
+	private Point2D posPlayer=new Point2D(Main.Widith/2+Player.side,Main.Height/2+Player.side);
 	public static Player player;
 	public static float Widith,Height;
 	public static Texture circle,stick;
@@ -32,8 +35,11 @@ public class Main extends Game {
 	public static Array<Lives>livesArray;
 	public static GameHud gameHud;
 	public static GameScore gameScore;
+	public static int youRecord;
 	@Override
 	public void create () {
+		if(!Gdx.files.local("PlayerRecords.txt").exists())Write("0");
+		youRecord=Read();
 		batch = new SpriteBatch();
 		player=new Player(posPlayer);
 		Widith= Gdx.graphics.getWidth();
@@ -50,5 +56,14 @@ public class Main extends Game {
 		wave=new Wave(4,1,2);
 		gameHud=new GameHud();
 		gameScore=new GameScore();
+	}
+	public static void Write(String str){
+		FileHandle file = Gdx.files.local("PlayerRecords.txt");
+		file.writeString(str,false);
+
+	}
+	public static int Read(){
+		FileHandle file = Gdx.files.local("PlayerRecords.txt");
+		return  Integer.parseInt(file.readString());
 	}
 }

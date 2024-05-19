@@ -129,7 +129,7 @@ public class GameScreen implements Screen {
         upHealTimer();
         colH();
         Main.wave.update();
-        if(Main.player.getHealth()<1)main.setScreen(new DeadSceen(main));
+        if(Main.player.getHealth()<1)main.setScreen(new DeadSceen(main,Main.player.getScore()));
     }
     public void GameRender(SpriteBatch batch){
         Main.player.draw(batch);
@@ -178,8 +178,8 @@ public class GameScreen implements Screen {
         int Seconds=0;
         if(StartTimerL>0)Seconds= (int) ((System.currentTimeMillis()-StartTimerL)/1000);
         if(Seconds>=DelayL){
-            float x=MathUtils.random(64,Main.Widith);
-            float y=MathUtils.random(64,Main.Height);
+            float x=MathUtils.random(128,Main.Widith-128);
+            float y=MathUtils.random(128,Main.Height-128);
             Main.livesArray.add(new Lives(x,y));
             StartTimerL=0;
             Seconds=0;

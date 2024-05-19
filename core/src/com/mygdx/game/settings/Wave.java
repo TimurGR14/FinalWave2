@@ -46,13 +46,13 @@ public class Wave {
        float y;
        int Enem=minEnemy+WaveNumber;
        int maxRank=1;
-       if(WaveNumber>1){maxRank=2;}
-       if(WaveNumber>2){maxRank=3;}
-       if(WaveNumber>3){maxRank=4;}
+       if(WaveNumber>3){maxRank=2;}
+       if(WaveNumber>7){maxRank=3;}
+       if(WaveNumber>10){maxRank=4;}
 
        for (int i=0;i<Enem;i++){
-           x = MathUtils.random(64,Main.Widith);
-           y=MathUtils.random(64,Main.Height);
+           x = MathUtils.random(128,Main.Widith-128);
+           y=MathUtils.random(128,Main.Height-128);
            Main.enemyWithBows.add(new EnemyWithBow(new Point2D(x,y), (int) (Math.random()*maxRank+1)));
        }
 
@@ -67,5 +67,8 @@ public class Wave {
    }
    public boolean isDraw(){
        return StartTimer>0;
+   }
+   public void setWaveNumber(){
+       WaveNumber=1;
    }
 }
