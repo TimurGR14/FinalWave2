@@ -10,6 +10,8 @@ import com.mygdx.game.entety.EnemyWithBow;
 import com.mygdx.game.entety.Lives;
 import com.mygdx.game.entety.Player;
 import com.mygdx.game.settings.BulletGen;
+import com.mygdx.game.settings.GameHud;
+import com.mygdx.game.settings.GameScore;
 import com.mygdx.game.settings.GameScreen;
 import com.mygdx.game.settings.JoostikPlayer;
 import com.mygdx.game.settings.Point2D;
@@ -28,7 +30,8 @@ public class Main extends Game {
 	public static BulletGen bulletGen;
 	public static Wave wave;
 	public static Array<Lives>livesArray;
-	
+	public static GameHud gameHud;
+	public static GameScore gameScore;
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
@@ -45,5 +48,7 @@ public class Main extends Game {
 		bullets=new Array<Bullet>();
 		enemyWithBows=new Array<EnemyWithBow>();
 		wave=new Wave(4,1,2);
+		gameHud=new GameHud();
+		gameScore=new GameScore();
 	}
 }

@@ -18,6 +18,7 @@ public class GameScreen implements Screen {
     private long StartTimerL,StartTimerPlayer;
     public Lives lives;
 
+
     public GameScreen(Main main){
         this.main=main;
     }
@@ -128,7 +129,6 @@ public class GameScreen implements Screen {
         upHealTimer();
         colH();
         Main.wave.update();
-        System.out.println(Main.player.getHealth());
         if(Main.player.getHealth()<1)main.setScreen(new DeadSceen(main));
     }
     public void GameRender(SpriteBatch batch){
@@ -142,6 +142,8 @@ public class GameScreen implements Screen {
 
         for(int j=0;j<Main.livesArray.size;j++){Main.livesArray.get(j).draw(batch);}
         if(Main.wave.isDraw())Main.wave.draw(batch);
+        Main.gameHud.draw(batch);
+        Main.gameScore.draw(batch);
     }
     @Override
     public void dispose() {
