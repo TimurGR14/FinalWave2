@@ -54,6 +54,8 @@ public class EnemyWithBow extends Entety{
         positionEnemyBow=pos;
         boundsEnemyBow=new Circle(positionEnemyBow,radius);
         directionEnemyBow=new Point2D(0,0);
+        directionEnemyBow.setX((float) Math.sin(Math.toRadians(Math.random()*360)));
+        directionEnemyBow.setY((float) Math.cos(Math.toRadians(Math.random()*360)));
 
     }
     @Override
@@ -72,10 +74,10 @@ public class EnemyWithBow extends Entety{
             float ys=positionEnemyBow.getY()-Player.position.getY();
             float ds= (float) Math.sqrt(xs*xs+ys*ys);
             directionEnemyBow.setPoint(-(xs / ds), -(ys / ds));
-            positionEnemyBow.add(directionEnemyBow.getX()*speedEnemyBow,directionEnemyBow.getY()*speedEnemyBow);
 
             //поведение нпс
         }
+        positionEnemyBow.add(directionEnemyBow.getX()*speedEnemyBow,directionEnemyBow.getY()*speedEnemyBow);
         boundsEnemyBow.poso.setPoint(positionEnemyBow);
         bbEnemy.poso.setPoint(positionEnemyBow);
     }

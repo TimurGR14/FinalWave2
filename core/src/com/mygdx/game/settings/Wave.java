@@ -15,7 +15,7 @@ import java.util.Random;
 public class Wave {
     private int Delay,WaveNumber, minEnemy;
    private long StartTimer;
-   private String k= "WAVE -";
+   private String k= "WAVE - ";
    BitmapFont font;
 
    public Wave(int Delay,int WaveNumber,int minEnemy){

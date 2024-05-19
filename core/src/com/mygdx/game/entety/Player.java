@@ -73,7 +73,7 @@ public class Player extends Entety {
     }
 
     public void Heal(){
-        health+=20;
+        health+=10;
      }
      public Circle getBounds(){
         return bounds;
