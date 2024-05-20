@@ -2,6 +2,7 @@ package com.mygdx.game.entety;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.mygdx.game.Main;
 import com.mygdx.game.settings.Circle;
 import com.mygdx.game.settings.Point2D;
@@ -13,71 +14,37 @@ public class Boss extends Entety{
     private Point2D positionBoss;
     private Point2D directionBoss;
     private float healthBoss;
-    private float speedBoss;
+    private float speedBoss=25;
     public static Circle boundsBoss;
     private Circle bbBoss;
-    private float radius=64;
+    private float radius=128;
+    private int DelayB=10;
+    private long StartTimerB=0;
     public Boss(Point2D positionBoss){
-        boss=new Texture("");
+        boss=new Texture("Enemy4.png");
         this.positionBoss=positionBoss;
+        directionBoss=new Point2D(0,0);
         boundsBoss=new Circle(positionBoss,radius);
         bbBoss=new Circle(positionBoss,radius*8);
-        healthBoss=250;
-        speedBoss=5;
+        healthBoss=500;
+
     }
-    //любая атака идёт какое-то время
-    public void attackBoss1(float speedBoss){
+    public void attackBoss1(){
         directionBoss.setX((float) Math.sin(Math.toRadians(Math.random()*360)));
         directionBoss.setY((float) Math.cos(Math.toRadians(Math.random()*360)));
-        positionBoss.add(directionBoss.getX()*speedBoss,directionBoss.getY()*speedBoss);
     }
-    public void attackBoss2(float speedBoss){
+    public void attackBoss2(){
         float xs=positionBoss.getX()-Player.position.getX();
         float ys=positionBoss.getY()-Player.position.getY();
         float ds= (float) Math.sqrt(xs*xs+ys*ys);
-        /**
-         if (ds<64){
-         directionBoss.setPoint(0,0);
-         }else if(ds>64) {
-         directionBoss.setPoint(-(xs / ds), -(ys / ds));
-         }**/
         directionBoss.setPoint(-(xs / ds), -(ys / ds));
+
     }
-    public void attackBoss3(float speedBoss){
-        directionBoss.setX((float) Math.sin(Math.toRadians(Math.random()*360)));
-        directionBoss.setY((float) Math.cos(Math.toRadians(Math.random()*360)));
-        positionBoss.add(directionBoss.getX()*speedBoss,directionBoss.getY()*speedBoss);
-    }
-    public void attackBoss4(float speedBoss){
-        directionBoss.setX((float) Math.sin(Math.toRadians(Math.random()*360)));
-        directionBoss.setY((float) Math.cos(Math.toRadians(Math.random()*360)));
-        positionBoss.add(directionBoss.getX()*speedBoss,directionBoss.getY()*speedBoss);
-    }
-    public void attackBoss5(float speedBoss){
-        directionBoss.setX((float) Math.sin(Math.toRadians(Math.random()*360)));
-        directionBoss.setY((float) Math.cos(Math.toRadians(Math.random()*360)));
-        positionBoss.add(directionBoss.getX()*speedBoss,directionBoss.getY()*speedBoss);
-    }
-    public void randomAttackBoss(){
+
+    public int randomAttackBoss(){
         Random random = new Random();
-        int a = random.nextInt(1,5);
-        switch (a){
-            case 1:
-                attackBoss1(25);
-                break;
-            case 2:
-                attackBoss2(5);
-                break;
-            case 3:
-                attackBoss3(15);
-                break;
-            case 4:
-                attackBoss4(10);
-                break;
-            default:
-                attackBoss5(20);
-                break;
-        }
+        int x= MathUtils.random(1,3);
+        return x;
     }
     @Override
     public void draw(SpriteBatch batch) {
@@ -86,10 +53,36 @@ public class Boss extends Entety{
 
     @Override
     public void update() {
+        int x=1;
         if(positionBoss.getX()+radius> Main.Widith)directionBoss.setX(-directionBoss.getX());
         if(positionBoss.getX()-radius<0)directionBoss.setX(-directionBoss.getX());
         if(positionBoss.getY()+radius> Main.Height)directionBoss.setY(-directionBoss.getY());
         if(positionBoss.getY()-radius<0)directionBoss.setY(-directionBoss.getY());
-        randomAttackBoss();
+        /**
+        if(Main.wave.getWaveNumber()==1 && StartTimerB==0)StartTimerB=System.currentTimeMillis();
+        int Seconds=0;
+        if(StartTimerB>0)Seconds= (int) ((System.currentTimeMillis()-StartTimerB)/1000);
+        if(Seconds>=DelayB){
+            x=randomAttackBoss();
+            StartTimerB=0;
+            Seconds=0;
+        }
+        if(x==1 && StartTimerB==0){
+            StartTimerB=System.currentTimeMillis();
+            attackBoss1();
+            if(StartTimerB>0)Seconds= (int) ((System.currentTimeMillis()-StartTimerB)/1000);
+            if(Seconds>=DelayB){
+                x=randomAttackBoss();
+                StartTimerB=0;
+                Seconds=0;
+            }
+        }
+        while (x==2){
+            attackBoss2();
+        }
+        positionBoss.add(directionBoss.getX()*speedBoss,directionBoss.getY()*speedBoss);
+        boundsBoss.poso.setPoint(positionBoss);
+        bbBoss.poso.setPoint(positionBoss);**/
+
     }
 }

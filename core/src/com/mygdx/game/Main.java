@@ -6,6 +6,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
+import com.mygdx.game.entety.Boss;
 import com.mygdx.game.entety.Bullet;
 import com.mygdx.game.entety.EnemyWithBow;
 import com.mygdx.game.entety.Lives;
@@ -36,10 +37,13 @@ public class Main extends Game {
 	public static GameHud gameHud;
 	public static GameScore gameScore;
 	public static int youRecord;
+	//public static Boss boss;
 	@Override
 	public void create () {
 		if(!Gdx.files.local("PlayerRecords.txt").exists())Write("0");
 		youRecord=Read();
+
+		//boss=new Boss(new Point2D(Main.Widith/2+Player.side,Main.Height/2+Player.side));
 		batch = new SpriteBatch();
 		player=new Player(posPlayer);
 		Widith= Gdx.graphics.getWidth();
@@ -56,6 +60,7 @@ public class Main extends Game {
 		wave=new Wave(4,1,2);
 		gameHud=new GameHud();
 		gameScore=new GameScore();
+
 	}
 	public static void Write(String str){
 		FileHandle file = Gdx.files.local("PlayerRecords.txt");

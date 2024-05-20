@@ -21,22 +21,22 @@ public class EnemyWithBow extends Entety{
             case 1:
                 imgEnemyBow=new Texture("Enemy1.jpg");
                 boundsEnemyBow=new Circle(pos,radius);
-                healthEnemyBow=50;
+                healthEnemyBow=45;
                 speedEnemyBow=5;
                 bbEnemy=new Circle(pos,radius*10);
                 rang=Rang;
                 break;
             case 2:
                 imgEnemyBow=new Texture("Enemy2.png");
-                healthEnemyBow=20;
-                speedEnemyBow=6;
+                healthEnemyBow=35;
+                speedEnemyBow=7;
                 boundsEnemyBow=new Circle(pos,radius);
                 bbEnemy=new Circle(pos,radius*10);
                 rang=Rang;
                 break;
             case 3:
                 imgEnemyBow=new Texture("Enemy3.png");
-                healthEnemyBow=80;
+                healthEnemyBow=75;
                 speedEnemyBow=3;
                 boundsEnemyBow=new Circle(pos,radius);
                 bbEnemy=new Circle(pos,radius*15);
@@ -45,7 +45,7 @@ public class EnemyWithBow extends Entety{
             case 4:
                 imgEnemyBow=new Texture("Enemy4.png");
                 healthEnemyBow=60;
-                speedEnemyBow=7;
+                speedEnemyBow=9;
                 boundsEnemyBow=new Circle(pos,radius);
                 bbEnemy=new Circle(pos,radius*9);
                 rang=Rang;

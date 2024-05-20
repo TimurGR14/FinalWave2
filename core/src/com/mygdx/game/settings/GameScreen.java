@@ -128,7 +128,11 @@ public class GameScreen implements Screen {
         collision();
         upHealTimer();
         colH();
-        Main.wave.update();
+        if(Main.wave.getWaveNumber()<=21){
+            Main.wave.update();
+        }else{
+            main.setScreen(new ScreenFinal(main,Main.player.getScore()));
+        }
         if(Main.player.getHealth()<1)main.setScreen(new DeadSceen(main,Main.player.getScore()));
     }
     public void GameRender(SpriteBatch batch){
@@ -142,6 +146,7 @@ public class GameScreen implements Screen {
 
         for(int j=0;j<Main.livesArray.size;j++){Main.livesArray.get(j).draw(batch);}
         if(Main.wave.isDraw())Main.wave.draw(batch);
+
         Main.gameHud.draw(batch);
         Main.gameScore.draw(batch);
     }

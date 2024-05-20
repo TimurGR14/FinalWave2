@@ -71,4 +71,8 @@ public class Wave {
    public void setWaveNumber(){
        WaveNumber=1;
    }
+
+    public int getWaveNumber() {
+        return WaveNumber;
+    }
 }
