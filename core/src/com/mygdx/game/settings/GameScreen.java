@@ -128,9 +128,9 @@ public class GameScreen implements Screen {
         collision();
         upHealTimer();
         colH();
-        if(Main.wave.getWaveNumber()<=21){
+        if(Main.wave.getWaveNumber()<=20){
             Main.wave.update();
-        }else if(Main.wave.getWaveNumber()>21 && Main.enemyWithBows.size==0){
+        }else if(Main.wave.getWaveNumber()>20 && Main.enemyWithBows.size==0){
             main.setScreen(new ScreenFinal(main,Main.player.getScore()));
         }
         if(Main.player.getHealth()<1)main.setScreen(new DeadSceen(main,Main.player.getScore()));
