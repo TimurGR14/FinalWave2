@@ -50,9 +50,9 @@ public class Main extends Game {
 		Height=Gdx.graphics.getHeight();
 		circle=new Texture("circle.jpg");
 		stick=new Texture("stick.jpg");
-		joostikPlayer=new JoostikPlayer(circle,stick,new Point2D(Widith*4/5,Height/3),Height/4);
+		joostikPlayer=new JoostikPlayer(circle,stick,new Point2D(Widith*6/7,Height/4),Height/3);
 		setScreen(new GameScreen(this));
-		joostikBullet=new JoostikPlayer(circle,stick,new Point2D(Widith/5,Height/3),Height/5);
+		joostikBullet=new JoostikPlayer(circle,stick,new Point2D(Widith/7,Height/4),Height/3);
 		bulletGen=new BulletGen();
 		livesArray=new Array<Lives>();
 		bullets=new Array<Bullet>();
