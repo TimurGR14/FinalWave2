@@ -9,13 +9,14 @@ import com.badlogic.gdx.math.MathUtils;
 import com.mygdx.game.Main;
 import com.mygdx.game.entety.Lives;
 import com.badlogic.gdx.math.MathUtils;
+import com.mygdx.game.entety.OneSHANS;
 
 import java.util.Random;
 
 public class GameScreen implements Screen {
     private Main main;
-    private int DelayL=15,DelayPlayer=2;
-    private long StartTimerL,StartTimerPlayer;
+    private int DelayL=19,DelaySHANS=139;
+    private long StartTimerL,StartTimerShans;
     public Lives lives;
 
 
@@ -124,16 +125,28 @@ public class GameScreen implements Screen {
                 Main.enemyWithBows.removeIndex(k--);
                 Main.player.setScore();
             }
-        }
+        }/**
+        if(Main.player.getHealth()<1&& Main.player.getLive()>0){
+            Main.player.SHAn();
+            Main.player.setHealf();
+        }**/
         collision();
         upHealTimer();
+        upOneSHANSTimer();
+        //colSH();
         colH();
+        //ColBoss();
+        /**if(Main.boss.getHealthBoss()<1){
+            Main.boss.DieBoss();
+            main.setScreen(new ScreenFinal(main,Main.player.getScore()));
+        }**/
         if(Main.wave.getWaveNumber()<=20){
             Main.wave.update();
         }else if(Main.wave.getWaveNumber()>20 && Main.enemyWithBows.size==0){
             main.setScreen(new ScreenFinal(main,Main.player.getScore()));
         }
-        if(Main.player.getHealth()<1)main.setScreen(new DeadSceen(main,Main.player.getScore()));
+
+        if(Main.player.getHealth()<1 && Main.player.getLive()<1)main.setScreen(new DeadSceen(main,Main.player.getScore()));
     }
     public void GameRender(SpriteBatch batch){
         Main.player.draw(batch);
@@ -145,7 +158,12 @@ public class GameScreen implements Screen {
         }
 
         for(int j=0;j<Main.livesArray.size;j++){Main.livesArray.get(j).draw(batch);}
+        for(int k=0;k<Main.oneSHANSArray.size;k++){Main.oneSHANSArray.get(k).draw(batch);}
+
         if(Main.wave.isDraw())Main.wave.draw(batch);
+        /**if(Main.wave.getWaveNumber()>20 && Main.enemyWithBows.size==0 && Main.boss.getHealthBoss()>0){
+            Main.boss.draw(batch);
+        }**/
 
         Main.gameHud.draw(batch);
         Main.gameScore.draw(batch);
@@ -190,6 +208,19 @@ public class GameScreen implements Screen {
             Seconds=0;
         }
     }
+    public void upOneSHANSTimer(){
+        Random random=new Random();
+        if(StartTimerShans==0)StartTimerShans=System.currentTimeMillis();
+        int Seconds=0;
+        if(StartTimerShans>0)Seconds= (int) ((System.currentTimeMillis()-StartTimerShans)/1000);
+        if(Seconds>=DelaySHANS){
+            float z=MathUtils.random(128,Main.Widith-128);
+            float t=MathUtils.random(128,Main.Height-128);
+            Main.oneSHANSArray.add(new OneSHANS(z,t));
+            StartTimerShans=0;
+            Seconds=0;
+        }
+    }
     public  void  colH(){
         for (int i=0;i<Main.livesArray.size;i++){
             if(Main.livesArray.get(i).getBoundsLive().Overlaps(Main.player.getBounds())){
@@ -199,4 +230,25 @@ public class GameScreen implements Screen {
             }
         }
     }
+    public  void  colSH(){
+        for (int i=0;i<Main.oneSHANSArray.size;i++){
+            if(Main.oneSHANSArray.get(i).getBoundsOne().Overlaps(Main.player.getBounds())){
+                Main.player.setLive();
+                Main.oneSHANSArray.removeIndex(i);
+                break;
+            }
+        }
+    }
+    /**public void ColBoss(){
+        if(Main.boss.getBoundsBoss().Overlaps(Main.player.getBounds())){
+            Main.player.setHealthVSBoss();
+        }
+        for (int i=0;i<Main.bullets.size;i++){
+            if(Main.bullets.get(i).boundsBullet.Overlaps(Main.boss.getBoundsBoss())){
+                Main.boss.setHealthBoss();
+                Main.bullets.removeIndex(i);
+                break;
+            }
+        }
+    }**/
 }

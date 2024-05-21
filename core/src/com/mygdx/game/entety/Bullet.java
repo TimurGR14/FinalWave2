@@ -1,5 +1,7 @@
 package com.mygdx.game.entety;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Main;
@@ -14,6 +16,7 @@ public class Bullet extends  Entety{
     float radiusBullet=32;
     public Circle boundsBullet;
     public boolean isOut;
+
 
     public Bullet(Point2D pos,Point2D dir){
         imgBullet=new Texture("MyBullet.png");

@@ -19,6 +19,7 @@ public class Player extends Entety {
     public static Point2D direction;
     private boolean ghost;
     private long StartTimerP=0;
+    private int live=0;
 
     public Player(Point2D position){
         imgPlayer=new Texture("giga.jpg");
@@ -73,7 +74,7 @@ public class Player extends Entety {
     }
 
     public void Heal(){
-        health+=10;
+        health+=16;
      }
      public Circle getBounds(){
         return bounds;
@@ -91,5 +92,17 @@ public class Player extends Entety {
     }
     public void setStartPosition(){
         position.setPoint(Main.Widith/2+side,Main.Height/2+side);
+    }
+    public  void SHAn(){
+        live-=1;
+    }
+    public void setLive(){
+        live+=1;
+    }
+    public int getLive(){
+        return live;
+    }
+    public void setHealthVSBoss(){
+        health-=4;
     }
 }
