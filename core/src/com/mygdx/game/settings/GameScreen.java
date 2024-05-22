@@ -132,7 +132,7 @@ public class GameScreen implements Screen {
         }**/
         collision();
         upHealTimer();
-        upOneSHANSTimer();
+        //upOneSHANSTimer();
         //colSH();
         colH();
         //ColBoss();
@@ -158,7 +158,7 @@ public class GameScreen implements Screen {
         }
 
         for(int j=0;j<Main.livesArray.size;j++){Main.livesArray.get(j).draw(batch);}
-        for(int k=0;k<Main.oneSHANSArray.size;k++){Main.oneSHANSArray.get(k).draw(batch);}
+        //for(int k=0;k<Main.oneSHANSArray.size;k++){Main.oneSHANSArray.get(k).draw(batch);}
 
         if(Main.wave.isDraw())Main.wave.draw(batch);
         /**if(Main.wave.getWaveNumber()>20 && Main.enemyWithBows.size==0 && Main.boss.getHealthBoss()>0){
@@ -208,7 +208,7 @@ public class GameScreen implements Screen {
             Seconds=0;
         }
     }
-    public void upOneSHANSTimer(){
+    /**public void upOneSHANSTimer(){
         Random random=new Random();
         if(StartTimerShans==0)StartTimerShans=System.currentTimeMillis();
         int Seconds=0;
@@ -220,7 +220,7 @@ public class GameScreen implements Screen {
             StartTimerShans=0;
             Seconds=0;
         }
-    }
+    }**/
     public  void  colH(){
         for (int i=0;i<Main.livesArray.size;i++){
             if(Main.livesArray.get(i).getBoundsLive().Overlaps(Main.player.getBounds())){
@@ -230,6 +230,7 @@ public class GameScreen implements Screen {
             }
         }
     }
+    /**
     public  void  colSH(){
         for (int i=0;i<Main.oneSHANSArray.size;i++){
             if(Main.oneSHANSArray.get(i).getBoundsOne().Overlaps(Main.player.getBounds())){
@@ -238,7 +239,7 @@ public class GameScreen implements Screen {
                 break;
             }
         }
-    }
+    }**/
     /**public void ColBoss(){
         if(Main.boss.getBoundsBoss().Overlaps(Main.player.getBounds())){
             Main.player.setHealthVSBoss();

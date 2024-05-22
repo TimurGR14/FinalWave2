@@ -38,7 +38,7 @@ public class Main extends Game {
 	public static Array<Lives>livesArray;
 	public static GameHud gameHud;
 	public static GameScore gameScore;
-	public static Array<OneSHANS>oneSHANSArray;
+	//public static Array<OneSHANS>oneSHANSArray;
 	public static int youRecord;
 	//public static Boss boss;
 	private Music music;
@@ -64,7 +64,7 @@ public class Main extends Game {
 		livesArray=new Array<Lives>();
 		bullets=new Array<Bullet>();
 		enemyWithBows=new Array<EnemyWithBow>();
-		oneSHANSArray=new Array<OneSHANS>();
+		//oneSHANSArray=new Array<OneSHANS>();
 		wave=new Wave(4,1,2);
 		gameHud=new GameHud();
 		gameScore=new GameScore();
